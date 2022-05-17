@@ -14,7 +14,7 @@ colors.
 - [x] Clear the entire canvas
 
 ### Future Improvements and Features
-- [ ] Preview/Feedback for drawing with the line and Rect tools
+- [x] Ability to preview what the line and Rect tools will do
 - [ ] Multiple color choices
 - [ ] Save/Load from In browser gallery
 - [ ] Share to social media

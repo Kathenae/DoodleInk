@@ -7,19 +7,35 @@ import UndoTool from "./core/canvas_tools/undo.js";
 const canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
 const ctx = canvas.getContext("2d");
 ctx.lineWidth = 5;
+
+// Setup preview canvas, which can be used by tools
+// to draw previews of what they will do
+const canvasPreview = document.getElementById("canvasPreview");
+canvasPreview.width = canvas.width;
+canvasPreview.height = canvas.height;
+ctx.preview = canvasPreview.getContext("2d");
+ctx.preview.lineWidth = 1;
+ctx.preview.strokeStyle = "magenta";
+
+// used to clean the preview
+ctx.preview.clean = () => {
+  ctx.preview.clearRect(0,0, canvas.width, canvas.height);
+}
 
 const colorPicker = new ColorPicker(ctx);
 const tools = new ToolPicker(ctx);
 
-// canvas drawing events handling
-canvas.addEventListener("touchstart", onStart);
-canvas.addEventListener("touchmove", onMove);
-canvas.addEventListener("touchend", onEnd);
-canvas.addEventListener("mousedown", onStart);
-canvas.addEventListener("mousemove", onMove);
-canvas.addEventListener("mouseup", onEnd);
+// canvas drawing events handling,
+// Note: we're listening on canvasPreview because its on top of the main canvas
+canvasPreview.addEventListener("touchstart", onStart);
+canvasPreview.addEventListener("touchmove", onMove);
+canvasPreview.addEventListener("touchend", onEnd);
+canvasPreview.addEventListener("mousedown", onStart);
+canvasPreview.addEventListener("mousemove", onMove);
+canvasPreview.addEventListener("mouseup", onEnd);
 
 // Current x, y point
 let currentTouchPoint = null;

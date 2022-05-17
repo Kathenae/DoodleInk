@@ -11,15 +11,23 @@ export default class RectTool{
     this.startPoint.y = y;
   }
   
+  onMove(x, y){
+    this.ctx.preview.clean();
+    this.endPoint.x = x;
+    this.endPoint.y = y;
+    this.drawRect(this.startPoint, this.endPoint, this.ctx.preview)
+  }
+  
   onEnd(x, y){
     this.endPoint.x = x;
     this.endPoint.y = y;
     this.drawRect(this.startPoint, this.endPoint)
+    this.ctx.preview.clean();
   }
   
-  drawRect(startPoint, endPoint){
+  drawRect(startPoint, endPoint, ctx = this.ctx){
     let rect = this.makeRectBetweenPoints(startPoint, endPoint)
-    this.ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
   }
   
   makeRectBetweenPoints(point1, point2){
