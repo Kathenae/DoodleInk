@@ -1,7 +1,7 @@
 
-import ColorPicker from "./color_picker.js";
-import ToolPicker from "./tool_picker.js"
-import UndoTool from "./tools/undo.js";
+import ColorPicker from "./ui/color_picker.js";
+import ToolPicker from "./ui/tool_picker.js"
+import UndoTool from "./core/canvas_tools/undo.js";
 
 // Setup the canvas 
 const canvas = document.getElementById("canvas");

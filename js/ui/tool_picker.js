@@ -1,7 +1,7 @@
-import PencilTool from "./tools/pencil.js";
-import LineTool from "./tools/line.js";
-import RectTool from "./tools/rect.js";
-import EraserTool from "./tools/eraser.js";
+import PencilTool from "../core/canvas_tools/pencil.js";
+import LineTool from "../core/canvas_tools/line.js";
+import RectTool from "../core/canvas_tools/rect.js";
+import EraserTool from "../core/canvas_tools/eraser.js";
 
 export default class ToolPicker{
   constructor(ctx){
