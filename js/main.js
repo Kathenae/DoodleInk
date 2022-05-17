@@ -1,9 +1,9 @@
-
 import ColorPicker from "./color_picker.js";
-import ToolPicker from "./tool_picker.js"
+import ToolPicker from "./tool_picker.js";
 import UndoTool from "./tools/undo.js";
 
-// Setup the canvas 
+const pincelElement = document.getElementById("pencilButton");
+// Setup the canvas
 const canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -24,39 +24,41 @@ canvas.addEventListener("mouseup", onEnd);
 // Current x, y point
 let currentTouchPoint = null;
 
-function onStart(evt){
+function onStart(evt) {
   evt.preventDefault();
   let touchPoint = getTouchPoint(evt);
   currentTouchPoint = touchPoint;
   undoTool.onPreEdit();
-  if(tools.getCurrentTool().onStart)
+  if (tools.getCurrentTool().onStart)
     tools.getCurrentTool().onStart(touchPoint.x, touchPoint.y);
 }
 
-function onMove(evt){
+function onMove(evt) {
   evt.preventDefault();
   let touchPoint = getTouchPoint(evt);
   currentTouchPoint = touchPoint;
-  if(tools.getCurrentTool().onMove)
+  if (
+    tools.getCurrentTool().onMove &&
+    pincelElement.classList.contains("active")
+  ) {
     tools.getCurrentTool().onMove(touchPoint.x, touchPoint.y);
+  }
 }
 
-function onEnd(evt){
+function onEnd(evt) {
   evt.preventDefault();
-  if(tools.getCurrentTool().onEnd)
+  if (tools.getCurrentTool().onEnd)
     tools.getCurrentTool().onEnd(currentTouchPoint.x, currentTouchPoint.y);
   currentTouchPoint = null;
 }
 
-function getTouchPoint(evt){
-  if(evt.touches){
-    return {x : evt.touches[0].clientX, y : evt.touches[0].clientY }
-  }
-  else if(evt.clientX && evt.clientY){
-    return {x : evt.clientX, y : evt.clientY }
+function getTouchPoint(evt) {
+  if (evt.touches) {
+    return { x: evt.touches[0].clientX, y: evt.touches[0].clientY };
+  } else if (evt.clientX && evt.clientY) {
+    return { x: evt.clientX, y: evt.clientY };
   }
 }
-
 
 // Save, clear abd undo handling
 const saveButton = document.getElementById("saveButton");
@@ -64,18 +66,35 @@ const clearButton = document.getElementById("clearButton");
 const undoButton = document.getElementById("undoButton");
 
 saveButton.onclick = () => {
-  saveButton.setAttribute('download', 'doodle.png');
-  saveButton.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-}
+  saveButton.setAttribute("download", "doodle.png");
+  saveButton.setAttribute(
+    "href",
+    canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+  );
+};
 
 clearButton.onclick = (evt) => {
   undoTool.onPreEdit();
-  ctx.clearRect(0,0, canvas.width, canvas.height);
-}
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
 
 const undoTool = new UndoTool(ctx);
 undoButton.onclick = (evt) => {
   evt.preventDefault();
   undoTool.undo();
-}
+};
 
+const pincelEvent = function ({ target }) {
+  if (target.src) {
+    console.log(target.parentElement.classList);
+    target.parentElement.classList.toggle("active");
+    return;
+  }
+
+  target.classList.toggle("active");
+};
+// start all function global
+const start = () => {
+  pincelElement.addEventListener("click", pincelEvent);
+};
+start();
