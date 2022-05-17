@@ -13,6 +13,7 @@ export default class ToolPicker {
       rect: new RectTool(ctx),
     };
 
+    // start all function global
     // Setup tool buttons
     this.tools.pencil.button = document.getElementById("pencilButton");
     this.tools.eraser.button = document.getElementById("eraserButton");
@@ -22,8 +23,14 @@ export default class ToolPicker {
     // Change tool when its button is clicked
     for (var toolName in this.tools) {
       let tool = this.tools[toolName];
-      tool.button.addEventListener("click", (evt) => {
+      // toolName.button.classList.remove("active");
+      tool.button.addEventListener("click", (event) => {
+        this.tools.pencil.button.classList.remove("active");
+        this.tools.eraser.button.classList.remove("active");
+        this.tools.line.button.classList.remove("active");
+        this.tools.rect.button.classList.remove("active");
         this.changeCurrentTool(tool);
+        this.activeCurrentElement(event);
       });
     }
 
@@ -31,12 +38,12 @@ export default class ToolPicker {
   }
 
   changeCurrentTool(tool) {
-    if (this.currentTool.button) {
-      this.currentTool.button.classList.toggle("bg-primary");
-    }
+    // if (this.currentTool.button) {
+    //   this.currentTool.button.classList.toggle("active");
+    // }
 
     if (tool.button) {
-      tool.button.classList.toggle("bg-primary");
+      tool.button.classList.toggle("active");
     }
 
     this.currentTool = tool;
@@ -44,5 +51,12 @@ export default class ToolPicker {
 
   getCurrentTool() {
     return this.currentTool;
+  }
+  activeCurrentElement({ target }) {
+    // if (target.src) {
+    //   target.parentElement.classList.toggle("active");
+    //   return;
+    // }
+    // target.classList.toggle("active");
   }
 }

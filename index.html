@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/lib/bootstrap.bundle.min.js" defer></script>
-  
+
   <link rel="stylesheet" href="css/index.css">
   <script src="js/main.js" type="module" defer></script>
-  
+
   <title>DoodleInk</title>
 </head>
+
 <body>
-<body>
-  <canvas id="canvas"></canvas>
-  
-  <div class="buttons-side">
-    <div class="tools mt-4">
-      <button id="pencilButton" class="btn btn-light bg-primary rounded-circle shadow" type="button">
-        <img src="./icons/pencil.png" alt="pencil" />
-      </button>
-      <button id="eraserButton" class="btn btn-light rounded-circle shadow" type="button">
-        <img src="./icons/eraser.png" alt="eraser" />
-      </button>
-      <button id="lineButton" class="btn btn-light rounded-circle shadow" type="button">
-        <img src="./icons/line.png" alt="line" />
-      </button>
-      <button id="rectButton" class="btn btn-light rounded-circle shadow" type="button">
-        <img src="./icons/rect.png" alt="rect" />
-      </button>
-      
-      <a href="#" id="saveButton" class="btn btn-success rounded-circle shadow mt-5 mb-2">
-        <img src="./icons/download.png" alt="download" />
-      </a>
-      <button id="undoButton" class="btn btn-info rounded-circle shadow mb-2" type="button">
-        <img src="./icons/undo.png" alt="undo" />
-      </button>
-      <button class="btn btn-danger rounded-circle shadow mb-2" id="clearButton" type="button">
-          <img src="./icons/bin.png" alt="clear" />
-      </button>
+
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <div class="buttons-side">
+      <div class="tools mt-4">
+        <button id="pencilButton" class="btn btn-light  rounded-circle shadow" type="button">
+          <img src="./icons/bxs-pencil.svg" alt="pencil" />
+        </button>
+        <button id="eraserButton" class="btn btn-light rounded-circle shadow" type="button">
+          <img src="./icons/bx-eraser.svg" alt="eraser" />
+        </button>
+        <button id="lineButton" class="btn btn-light rounded-circle shadow" type="button">
+          <img src="./icons/show.svg" alt="line" />
+        </button>
+        <button id="rectButton" class="btn btn-light rounded-circle shadow" type="button">
+          <img src="./icons/open.svg" alt="rect" />
+        </button>
+
+        <button href="#" id="saveButton" class="btn btn-success rounded-circle shadow mt-5 mb-2">
+          <img src="./icons/download.svg" alt="download" />
+        </button>
+        <button id="undoButton" class="btn btn-info rounded-circle shadow mb-2" type="button">
+          <img src="./icons/restart.svg" alt="undo" />
+        </button>
+        <button class="btn btn-danger rounded-circle shadow mb-2" id="clearButton" type="button">
+          <img src="./icons/delete.svg" alt="clear" />
+        </button>
+      </div>
     </div>
-  </div>
-  
-  <div class="color-slots">
-    <button class="btn btn-colorslot rounded-circle selected mt-5" type="button"></button>
-    <button class="btn btn-colorslot rounded-circle" type="button"></button>
-    <button class="btn btn-colorslot rounded-circle" type="button"></button>
-    <button class="btn btn-colorslot rounded-circle" type="button"></button>
-    <button class="btn btn-colorslot rounded-circle" type="button"></button>
-    <button class="btn btn-colorslot rounded-circle" type="button"></button>
-  </div>
-  
-</body>
+
+    <div class="color-slots">
+      <button class="btn btn-colorslot rounded-circle selected mt-5" type="button"></button>
+      <button class="btn btn-colorslot rounded-circle" type="button"></button>
+      <button class="btn btn-colorslot rounded-circle" type="button"></button>
+      <button class="btn btn-colorslot rounded-circle" type="button"></button>
+      <button class="btn btn-colorslot rounded-circle" type="button"></button>
+      <button class="btn btn-colorslot rounded-circle" type="button"></button>
+    </div>
+
+  </body>
+
 </html>

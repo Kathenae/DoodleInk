@@ -83,18 +83,3 @@ undoButton.onclick = (evt) => {
   evt.preventDefault();
   undoTool.undo();
 };
-
-const pincelEvent = function ({ target }) {
-  if (target.src) {
-    console.log(target.parentElement.classList);
-    target.parentElement.classList.toggle("active");
-    return;
-  }
-
-  target.classList.toggle("active");
-};
-// start all function global
-const start = () => {
-  pincelElement.addEventListener("click", pincelEvent);
-};
-start();
