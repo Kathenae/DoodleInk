@@ -7,14 +7,22 @@ export default class ColorPicker{
     const defaulColors = ["red", "blue", "green", "yellow", "black", "orange"];
     this.setSelectedSlot(colorSlots[4]);
     
-    //Setup slots
+    // Setup slots
     for (let i = 0; i < colorSlots.length; i++) {
       let slot = colorSlots[i];
       slot.style.backgroundColor = defaulColors[i];
       slot.onclick = (evt) => {
         evt.preventDefault();
         this.setSelectedSlot(slot);
+        this.applySlotColor();
       }
+    }
+    
+    // color selection
+    let colorInput = document.getElementById("colorInput");
+    colorInput.onchange = (evt) => {
+      this.currentSlot.style.backgroundColor = evt.target.value;
+      this.applySlotColor();
     }
     
   }
@@ -23,7 +31,10 @@ export default class ColorPicker{
     this.currentSlot.classList.toggle("selected");
     colorSlot.classList.toggle("selected");
     this.currentSlot = colorSlot;
-    this.ctx.strokeStyle = colorSlot.style.backgroundColor;
+  }
+  
+  applySlotColor(){
+    this.ctx.strokeStyle = this.currentSlot.style.backgroundColor;
   }
   
 }

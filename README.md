@@ -15,7 +15,7 @@ colors.
 
 ### Future Improvements and Features
 - [x] Ability to preview what the line and Rect tools will do
-- [ ] Multiple color choices
+- [x] Ability to choose diferent colors
 - [ ] Save/Load from In browser gallery
 - [ ] Share to social media
 - [ ] Realtime canvas sharing
