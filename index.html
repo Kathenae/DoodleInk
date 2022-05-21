@@ -31,6 +31,10 @@
       <button id="rectButton" class="btn btn-light rounded-circle shadow" type="button">
         <img class="icon" src="./icons/rect.png" alt="rect" />
       </button>
+      <button id="toolSettingsButton" data-bs-toggle="offcanvas" data-bs-target="#toolSettings" class="btn btn-light rounded-circle shadow" type="button">
+        <img id="toolIcon" class="icon" src="./icons/pencil.png" alt="rect" />
+        <img class="icon-sm" src="./icons/add.png/" alt="add" />
+      </button>
     </div>
     <div class="mt-5">
       <a href="#" id="saveButton" class="btn btn-success rounded-circle shadow mb-2">
@@ -53,6 +57,63 @@
     <button class="btn btn-colorslot rounded-circle" type="button"></button>
     <button class="btn btn-colorslot rounded-circle" type="button"></button>
     <input class="form-control form-control-color" title="Pick a color" type="color" id="colorInput"/>
+  </div>
+  
+  <div id="toolSettings" class="offcanvas offcanvas-end" style="width: 40vw" tabindex="-1">
+    <div class="offcanvas-header">
+      <h5>Tool Settings</h5>
+      <button class="btn-close text-reset" data-bs-dismiss="offcanvas" ariaLabel="Close" type="button"></button>
+    </div>
+    <div id="toolSettingsBody" class="offcanvas-body">
+      
+      <div id="pencilToolSettings" class="">
+        <div class="form-group">
+          <label for="size">Pencil Size</label>
+          <input class="form-control" type="number" name="size" id="pencilSize" />
+        </div>
+      </div>
+      
+      <div id="lineToolSettings" class="hidden">
+        <div class="form-group">
+          <label for="strokeStyle">Line Style</label>
+          <select class="form-select form-select-sm" name="strokeStyle" id="strokeStyle">
+            <option value="lines">Lines</option>
+            <option value="dashes">Dashes</option>
+            <option value="dots">Dots</option>
+          </select>
+        </div>
+        <div class="form-group mt-2">
+          <label for="lineWidth">Line Width</label>
+          <input class="form-control" type="number" name="lineWidth" id="lineWidth" value="5" />
+        </div>
+      </div>
+      
+      <div id="rectToolSettings" class="hidden">
+        <div class="form-check mb-2">
+          <label class="form-check-label" for="filled">Box Filled</label>
+          <input class="form-check-input" type="checkbox" name="filled" id="filled"/>
+        </div>
+        
+        <div class="form-group mb-2">
+          <label for="borderWidth">Border Width</label>
+          <input class="form-control" type="number" name="borderWidth" id="borderWidth" value="5" />
+        </div>
+        
+        <div class="form-group mb-2">
+          <label for="cornerRadius">Corner Radius</label>
+          <input class="form-control" type="number" name="cornerRadius" id="cornerRadius" value="0" />
+        </div>
+        
+      </div>
+      
+      <div id="eraserToolSettings" class="hidden">
+        <div class="form-group">
+          <label for="size">Eraser Size</label>
+          <input class="form-control" type="number" name="size" id="eraserSize" value="20" />
+        </div>
+      </div>
+      
+    </div>
   </div>
   
 </body>

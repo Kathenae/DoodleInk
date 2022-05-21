@@ -46,3 +46,13 @@ body{
   width: 20px;
   height: 20px;
 }
+
+.icon-sm{
+  width: 10px;
+  height: 10px;
+  position: fixed;
+}
+
+.hidden{
+  
+}

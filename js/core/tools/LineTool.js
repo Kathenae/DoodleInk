@@ -3,6 +3,7 @@ export default class LineTool {
     this.ctx = ctx;
     this.startX = 0;
     this.startY = 0;
+    this.lineWidth = 5;
   }
   
   onStart(x, y){
@@ -27,4 +28,21 @@ export default class LineTool {
     this.ctx.preview.clean();
   }
   
+  setLineWidth(value){
+    if(Number(value)){
+      this.ctx.lineWidth = Number(value);
+    }
+  }
+  
+  getLineWidth(){
+    return this.ctx.lineWidth;
+  }
+  
+  setStrokeStyle(value){
+    console.log(value);
+  }
+  
+  getStrokeStyle(){
+    return "lines"
+  }
 }

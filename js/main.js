@@ -1,7 +1,6 @@
-
-import ColorPicker from "./ui/color_picker.js";
-import ToolPicker from "./ui/tool_picker.js"
-import UndoTool from "./core/canvas_tools/undo.js";
+import ColorSelector from "./ui/ColorSelector.js";
+import ToolSelector from "./ui/ToolSelector.js";
+import UndoTool from "./core/UndoHandler.js";
 
 // Setup the canvas 
 const canvas = document.getElementById("canvas");
@@ -25,8 +24,8 @@ ctx.preview.clean = () => {
   ctx.preview.clearRect(0,0, canvas.width, canvas.height);
 }
 
-const colorPicker = new ColorPicker(ctx);
-const tools = new ToolPicker(ctx);
+const colorSelector = new ColorSelector(ctx);
+const tools = new ToolSelector(ctx);
 
 // canvas drawing events handling,
 // Note: we're listening on canvasPreview because its on top of the main canvas
@@ -45,22 +44,22 @@ function onStart(evt){
   let touchPoint = getTouchPoint(evt);
   currentTouchPoint = touchPoint;
   undoTool.onPreEdit();
-  if(tools.getCurrentTool().onStart)
-    tools.getCurrentTool().onStart(touchPoint.x, touchPoint.y);
+  if(tools.getActiveTool().onStart)
+    tools.getActiveTool().onStart(touchPoint.x, touchPoint.y);
 }
 
 function onMove(evt){
   evt.preventDefault();
   let touchPoint = getTouchPoint(evt);
   currentTouchPoint = touchPoint;
-  if(tools.getCurrentTool().onMove)
-    tools.getCurrentTool().onMove(touchPoint.x, touchPoint.y);
+  if(tools.getActiveTool().onMove)
+    tools.getActiveTool().onMove(touchPoint.x, touchPoint.y);
 }
 
 function onEnd(evt){
   evt.preventDefault();
-  if(tools.getCurrentTool().onEnd)
-    tools.getCurrentTool().onEnd(currentTouchPoint.x, currentTouchPoint.y);
+  if(tools.getActiveTool().onEnd)
+    tools.getActiveTool().onEnd(currentTouchPoint.x, currentTouchPoint.y);
   currentTouchPoint = null;
 }
 
@@ -72,7 +71,6 @@ function getTouchPoint(evt){
     return {x : evt.clientX, y : evt.clientY }
   }
 }
-
 
 // Save, clear abd undo handling
 const saveButton = document.getElementById("saveButton");
@@ -94,4 +92,3 @@ undoButton.onclick = (evt) => {
   evt.preventDefault();
   undoTool.undo();
 }
-

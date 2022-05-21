@@ -3,7 +3,10 @@ export default class RectTool{
   constructor(ctx){
     this.ctx = ctx;
     this.startPoint = {x: 0, y: 0};
-    this.endPoint = {x: 0, y: 0}
+    this.endPoint = {x: 0, y: 0};
+    this.borderWidth = 5;
+    this.borderRadius = 0;
+    this.filled = false;
   }
   
   onStart(x, y){
@@ -26,8 +29,15 @@ export default class RectTool{
   }
   
   drawRect(startPoint, endPoint, ctx = this.ctx){
-    let rect = this.makeRectBetweenPoints(startPoint, endPoint)
+    let rect = this.makeRectBetweenPoints(startPoint, endPoint);
+    ctx.lineWidth = this.borderWidth;
+    ctx.strokeStyle = this.ctx.strokeStyle;
     ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+    
+    if(this.filled){
+      ctx.fillStyle = ctx.strokeStyle;
+      ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+    }
   }
   
   makeRectBetweenPoints(point1, point2){
@@ -42,6 +52,30 @@ export default class RectTool{
       width: endX - startX, 
       height: endY - startY
     }
+  }
+  
+  setBorderWidth(value){
+    this.borderWidth = Number(value);
+  }
+  
+  getBorderWidth(){
+    return this.borderWidth;
+  }
+  
+  setCornerRadius(value){
+    this.cornerRadius = Number(value);
+  }
+  
+  getBorderRadius(){
+    return this.cornerRadius;
+  }
+  
+  setFilled(value){
+    this.filled = Boolean(value);
+  }
+  
+  getFilled(){
+    return this.filled;
   }
   
 }

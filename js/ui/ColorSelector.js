@@ -1,4 +1,4 @@
-export default class ColorPicker{
+export default class ColorSelector{
   
   constructor(ctx){
     this.ctx = ctx;
